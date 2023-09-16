@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import Paginado from '@/components/Paginado.jsx'
+
 const ListadoPersonajes = () => {
 
     const [dataAPI, setDataAPI] = useState([])
@@ -27,10 +29,13 @@ const ListadoPersonajes = () => {
 
         )
     })
+
+
   return (
     <>
     <div>ListadoPersonajes</div>
     {listado}
+    <Paginado></Paginado>
     </>
     
   )
