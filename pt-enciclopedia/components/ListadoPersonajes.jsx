@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const ListadoPersonajes = () => {
 
-    const [dataAPI, setDataAPI] = useState()
+    const [dataAPI, setDataAPI] = useState([])
 
     useEffect(() => {
       llamadaApi()
@@ -19,9 +19,20 @@ const ListadoPersonajes = () => {
         }catch(error){"error detected", error}
     }
 
-    
+    const listado = dataAPI.map((actualElement)=>{
+        return(
+            <ul>
+                <li>{actualElement.name}</li>
+            </ul>
+
+        )
+    })
   return (
+    <>
     <div>ListadoPersonajes</div>
+    {listado}
+    </>
+    
   )
 }
 
