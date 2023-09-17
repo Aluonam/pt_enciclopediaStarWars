@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Paginado from '@/components/Paginado.jsx'
 
@@ -11,7 +11,7 @@ const ListadoPersonajes = () => {
     const [currentPage, setCurrentPage] = useState(1)
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         apiCall()
     }, [])
     
