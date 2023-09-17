@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import ListadoPersonajes from '@/components/ListadoPersonajes'
-import { Input } from 'antd'
+import { ContextAppProvider } from '@/context/ListadoContext'
+import InputShare from '@/components/InputShare'
 
 
 export default function Home() {
@@ -14,8 +15,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main}`}>
-        <Input></Input>
-        <ListadoPersonajes></ListadoPersonajes>
+        <ContextAppProvider>
+          <InputShare></InputShare>
+          <ListadoPersonajes></ListadoPersonajes>
+        </ContextAppProvider>
       </main>
     </>
   )
