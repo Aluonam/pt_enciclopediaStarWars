@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main}`}>
         <Input></Input>
-       <ListadoPersonajes></ListadoPersonajes>
+        <ListadoPersonajes></ListadoPersonajes>
       </main>
     </>
   )
