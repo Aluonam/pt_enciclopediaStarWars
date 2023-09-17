@@ -1,8 +1,13 @@
 import { Pagination } from 'antd';
 
-const App = () => 
+const Paginado = ({currentPage,setCurrentPage,totalResults}) => { 
+    
+    return(
+        <Pagination current={currentPage} total={totalResults} pageSize={5} onChange={(e)=>setCurrentPage(e)}/>
+    )
+}
 
-<Pagination defaultCurrent={1} total={10} />;
 
 
-export default App;
+
+export default Paginado;
