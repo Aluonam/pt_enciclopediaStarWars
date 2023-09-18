@@ -1,25 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+
+import Paginado from '@/components/Paginado.jsx'
+import { ListadoContext } from '@/context/ListadoContext'
 
 const ListadoPersonajes = () => {
 
-    const [dataAPI, setDataAPI] = useState([])
+    //---useState guarda pág actual que inicie en 1
+    const [currentPage, setCurrentPage] = useState(1)
 
+
+    const {dataAPI, setDataAPI} = useContext(ListadoContext)
+
+    //---lógica para meter los datos en el paginado de 5 en 5
     useEffect(() => {
-      llamadaApi()
-    }, [])
-    
+         handlePaginationData()
+    }, [currentPage])
 
-    const llamadaApi = async () => {
-        try{
-        const call = await fetch(`https://swapi.dev/api/people`);
-        const data = await call.json()
-        // console.log(data.results)
-        setDataAPI(data.results)
-
-        }catch(error){"error detected", error}
+    //lógica paginado (el 5 porque quiero que lo divida de 5 en 5)
+    const handlePaginationData = () => {
+        const initialDataForPage = (currentPage*5)-5
+        const finalDataForPage = currentPage*5
+        const newArrayData = dataAPI.originData.slice(initialDataForPage,finalDataForPage)
+        setDataAPI({...dataAPI, actualData:newArrayData})
+        
     }
-
-    const listado = dataAPI.map((actualElement)=>{
+    
+    const listado = dataAPI.actualData.map((actualElement)=>{
         return(
             <ul>
                 <li>{actualElement.name}</li>
@@ -27,10 +33,13 @@ const ListadoPersonajes = () => {
 
         )
     })
+
+
   return (
     <>
     <div>ListadoPersonajes</div>
     {listado}
+    <Paginado currentPage={currentPage} setCurrentPage={setCurrentPage} totalResults={dataAPI.actualData.length}></Paginado>
     </>
     
   )
